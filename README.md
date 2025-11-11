@@ -50,6 +50,8 @@ This is the backend API for the Movies & TV Shows application. Built with **Node
 # Clone the repo
 git clone https://github.com/Kallesh-B-S/movies_tvshows.git
 
+- For Docker Version use docker branch from repo
+
 cd movies-tvshows
 
 # Install dependencies
@@ -70,6 +72,8 @@ PG_DB_URL="postgresql://<db_user_name>:<db_password>@localhost:5432/<dbname>"
 
 PG_DB_URL="postgresql://postgres:root@localhost:5432/movies_tvshows"
 
+PORT=4000
+
 ```
 
 # Commands to run
@@ -79,18 +83,30 @@ PG_DB_URL="postgresql://postgres:root@localhost:5432/movies_tvshows"
 # 1) Install all project dependencies using below
 npm install
 
-# 2) ( use in development only ) To migrate schema/db only if any changes made schema after cloning use below
-npx prisma migrate dev --name init # (auto-generates migration & Prisma Client)
+# 2) To complete db migration setup use below
+npm run setup
 
-# 2) ( recomended for testing ) To migrate schema/db use below
-npx prisma migrate deploy
+# 3) If you need sample data you can seed data using below command
+npm run db-seed
 
-# 3) Generate Prisma Client before using API
-npx prisma generate
-
-# 4) If you need sample data you can seed data using below command
-npx prisma db seed
 ```
+## For Docker version
+
+```bash
+#  1) install dependencies
+npm install
+
+#  2) build docker images and run for first time from project path ( i.e movies_tvshows> docker-compose up --build)
+docker-compose up --build
+
+# Access API running in specified port in docker-compose.yaml file in this case
+http://localhost:4112/api/entertainments
+
+# And checkout Docker commands for further use
+[Docker Compose](https://docs.docker.com/reference/cli/docker/compose/)
+
+```
+
 
 # API Endpoints
 
